@@ -1,0 +1,21 @@
+# Emacs local state (do not commit)
+/emacs/eln-cache/
+/emacs/elpa/
+emacs/auto-save-list
+emacs/history
+emacs/places
+emacs/recentf
+emacs/custom-set.el
+emacs/projectile-bookmarks.eld
+emacs/projectile-frecency.eld
+emacs/.cache/
+
+# Matugen generated output
+/matugen/generated/
+/matugen/themes/matugen-colors.json
+
+# OS / editor noise
+.DS_Store
+*~
+*.swp
+*.swo

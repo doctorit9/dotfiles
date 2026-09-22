@@ -1,0 +1,38 @@
+[config]
+# Non-interactive default: matugen can't prompt when run from scripts.
+prefer = "saturation"
+
+# COSMIC Epoch 1.8 integration (colors ONLY).
+# Matugen renders a colors JSON; cosmic-apply.py merges those colors into a
+# fresh `cosmic-settings appearance export` (which carries your live roundness
+# / density / gaps / frosted preferences) and imports the result. The derived
+# theme rebuilds live. No manual import needed; geometry is never touched.
+[templates.cosmic-colors]
+input_path = 'templates/matugen-colors.json'
+output_path = '/home/doctorit/.config/matugen/themes/matugen-colors.json'
+post_hook = 'python3 /home/doctorit/.config/matugen/scripts/cosmic-apply.py'
+
+# Emacs: same faces as cosmic-theme.el, palette follows the wallpaper.
+# Outputs a standalone theme; activate once with (load-theme 'matugen t).
+[templates.emacs]
+input_path = 'templates/matugen-emacs.el'
+output_path = '/home/doctorit/.config/emacs/matugen-theme.el'
+
+# VS Code: workbench + terminal colors merged into settings.json.
+# The merge script only touches keys Matugen owns; all user settings stay.
+[templates.vscode]
+input_path = 'templates/vscode-colors.json'
+output_path = '/home/doctorit/.config/matugen/themes/vscode-colors.json'
+post_hook = '/usr/bin/python3 /home/doctorit/.config/matugen/scripts/vscode-merge.py /home/doctorit/.config/matugen/themes/vscode-colors.json /home/doctorit/.config/Code/User/settings.json'
+
+# Neovim: :colorscheme matugen (auto-selected via lua/plugins/matugen.lua).
+[templates.nvim]
+input_path = 'templates/nvim-matugen.lua'
+output_path = '/home/doctorit/.config/nvim/colors/matugen.lua'
+
+# MatugenFox (Waterfox): browser + site theming via the native host.
+# In the MatugenFox popup: Settings -> verify paths -> 'Fetch Colors' once;
+# afterwards the host pushes updates live on every wallpaper change.
+[templates.matugenfox]
+input_path = 'templates/firefox_websites.css'
+output_path = '/home/doctorit/.config/matugen/generated/firefox_websites.css'
