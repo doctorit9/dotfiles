@@ -1,0 +1,149 @@
+                          ━━━━━━━━━━━━━━━━━━━
+                           VERTICO.EL - NEWS
+                          ━━━━━━━━━━━━━━━━━━━
+
+
+1 Version 2.14 (2026-09-03)
+═══════════════════════════
+
+  • `vertico-reverse-candidates', `vertico-reverse-prompt': New options
+    to selectively only reverse the list of candidates, and to move the
+    prompt to the bottom.
+  • Minor optimizations during candidate computation.
+  • Improve prompt selection behavior. Always allow prompt selection if
+    the input is valid, according to `test-completion' or a
+    `REQUIRE-MATCH' function.
+  • Do not remove a file from the candidate list if it matches the input
+    exactly, even if it should be filtered according to
+    `completion-ignored-extensions'.
+
+
+2 Version 2.13 (2026-08-21)
+═══════════════════════════
+
+  • `vertico-directory-tidy': New customization variable. Enable by
+    default.
+
+
+3 Version 2.12 (2026-08-05)
+═══════════════════════════
+
+  • `vertico-mouse': Handle `wheel-up' and `wheel-down' events directly.
+  • `minibuffer-exit-hook': Internal refactoring of minibuffer-local
+    hooks.
+
+
+4 Version 2.11 (2026-07-22)
+═══════════════════════════
+
+  • Bugfix: Fix double Vertico setup for `completing-read-multiple' on
+    Emacs 31.
+
+
+5 Version 2.10 (2026-06-05)
+═══════════════════════════
+
+  • `vertico--display-string': Better treatment of computed space in
+    candidate display.
+
+
+6 Version 2.9 (2026-05-19)
+══════════════════════════
+
+  • Improve deduplication of candidates.
+  • `vertico-flat-format': Support override via
+    `vertico-multiform-mode'.
+  • Require Compat 31.
+
+
+7 Version 2.8 (2026-03-09)
+══════════════════════════
+
+  • Do not set `completion-show-inline-help' locally in the minibuffer.
+  • `vertico-mouse-mode': Support `vertico-reverse-mode'.
+
+
+8 Version 2.7 (2026-01-18)
+══════════════════════════
+
+  • `vertico-multiform-mode': Check state of modes during minibuffer
+    setup.
+  • `vertico-next-group', `vertico-previous-group': Simplify group
+    handling.
+
+
+9 Version 2.6 (2025-11-15)
+══════════════════════════
+
+  • Require Emacs 29.1.
+  • `vertico-buffer': Check if `mode-line-format' is `nil' when
+    computing an appropriate `vertico-count' for the window height.
+
+
+10 Version 2.5 (2025-09-08)
+═══════════════════════════
+
+  • Introduce new `vertico--locals' variable for easier customization of
+    minibuffer-local variables.
+  • `vertico-mouse', `vertico-group-format': Try to avoid overly long
+    candidates such that no truncation markers are shown if the fringe
+    is disabled.
+  • Undo fringe settings introduced in version 2.3. Users can customize
+    this according to their preference in `vertico--locals'.
+  • Revert to `vertico--resize-window' again (from Vertico 1.9), which
+    takes a minibuffer height argument. Minibuffer resizing is still not
+    correct on Emacs 31 if fringes are disabled, i.e., `(set-fringe-mode
+    0)'.
+
+
+11 Version 2.4 (2025-06-27)
+═══════════════════════════
+
+  • New function `vertico-sort-directories-first' which sorts a list of
+    file names, with directories coming first.
+  • `vertico-multiform-mode': Add `:keymap' setting per command or
+    completion category. Either specify a list of key bindings or a
+    keymap directly.
+  • Disable `completion-eager-display' if Vertico is active.
+
+
+12 Version 2.3 (2025-06-10)
+═══════════════════════════
+
+  • `vertico-multiform-mode': Add context menu to change display
+    mode. First enable `vertico-multiform-mode' and
+    `context-menu-mode'. The menu will appear with a right click in the
+    Vertico minibuffer.
+  • Hide fringe line truncation indicators in the minibuffer.
+
+
+13 Version 2.2 (2025-05-26)
+═══════════════════════════
+
+  • Guard Vertico hooks to automatically print stack traces in order to
+    ease debugging.
+
+
+14 Version 2.1 (2025-04-19)
+═══════════════════════════
+
+  • `vertico-flat-format': Customizable `:spacer' string.
+  • `vertico-sort': Extracted sort functions to separate extension.
+  • `vertico-sort-history-duplicate' and `vertico-sort-history-decay':
+    New customization options to adjust the rank of duplicate history
+    elements, such that they appear earlier in the completion list.
+  • `vertico-repeat': Add `vertico-repeat-history' to
+    `savehist-minibuffer-history-variables' in order to save the history
+    if `savehist-mode' is enabled.
+  • `vertico-repeat': Do not store overly long selected candidates in
+    repeat history.
+
+
+15 Version 2.0 (2025-03-11)
+═══════════════════════════
+
+  • `vertico-directory-tidy': Cleanup shadowed path more aggressively.
+  • `vertico-directory-delete-char': Respect region.
+  • `vertico-directory-*': Improve responsiveness when using directory
+    commands.
+  …  …

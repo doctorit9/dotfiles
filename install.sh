@@ -16,10 +16,27 @@ link_file() {
   echo "link: $dst -> $src"
 }
 
-# emacs
+link_dir() {
+  local src="$1" dst="$2"
+  mkdir -p "$(dirname "$dst")"
+  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+    cp -a "$dst" "$BAK/$(basename "$dst")" 2>/dev/null || true
+    echo "backup: $dst -> $BAK/$(basename "$dst")"
+    rm -rf "$dst"
+  fi
+  ln -sfn "$src" "$dst"
+  echo "link: $dst -> $src"
+}
+
+# emacs (files + plugins)
 for f in init.el cosmic-theme.el matugen-theme.el; do
   [ -f "$DOTFILES_DIR/emacs/$f" ] && link_file "$DOTFILES_DIR/emacs/$f" "$HOME/.config/emacs/$f"
 done
+# plugins: elpa/ is tracked (archives/*.signed/gnupg excluded). Symlink whole dir;
+# init.el auto-installs missing packages on first run if dir is absent.
+if [ -d "$DOTFILES_DIR/emacs/elpa" ]; then
+  link_dir "$DOTFILES_DIR/emacs/elpa" "$HOME/.config/emacs/elpa"
+fi
 
 # shell
 for f in .bashrc .bash_profile .profile .gitconfig; do
@@ -28,14 +45,7 @@ done
 
 # nvim (whole dir)
 if [ -d "$DOTFILES_DIR/nvim" ]; then
-  mkdir -p "$HOME/.config"
-  if [ -e "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
-    cp -a "$HOME/.config/nvim" "$BAK/nvim" 2>/dev/null || true
-    echo "backup: $HOME/.config/nvim -> $BAK/nvim"
-    rm -rf "$HOME/.config/nvim"
-  fi
-  ln -sfn "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-  echo "link: $HOME/.config/nvim -> $DOTFILES_DIR/nvim"
+  link_dir "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 fi
 
 # btop

@@ -1,6 +1,5 @@
 # Emacs local state (do not commit)
 /emacs/eln-cache/
-/emacs/elpa/
 emacs/auto-save-list
 emacs/history
 emacs/places
@@ -9,6 +8,11 @@ emacs/custom-set.el
 emacs/projectile-bookmarks.eld
 emacs/projectile-frecency.eld
 emacs/.cache/
+
+# Emacs package metadata (regenerated, do not commit)
+emacs/elpa/archives/
+emacs/elpa/*.signed
+emacs/elpa/gnupg/
 
 # Matugen generated output
 /matugen/generated/
